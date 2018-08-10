@@ -1,3 +1,4 @@
+//games not working. readme has my thoughts on why it isnt
 var quiz = [{
     question: "the sky is",
     answers: ["red","blue","green","magenta"],
@@ -35,7 +36,7 @@ $(document).ready(function() {
   $(".showResults").hide();
   var correct = 0;
   var wrong = 0;
-  var timeRemaining = 10;
+  var timeRemaining = 30;
   var userAnswers = [];
 
   function startTimer() {
@@ -75,9 +76,11 @@ $(document).ready(function() {
   }
 
   function getUserAnswers() {
-    if ($('input').checked === true) {
-      userAnswers.push($('input').attr("value"));
-    }
+    $("input").each(function(){
+      if ($('input').checked === true) {
+        userAnswers.push($('input').attr("value"));
+      }
+    })
   }
   
   function checkAnswers() {

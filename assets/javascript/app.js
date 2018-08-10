@@ -35,10 +35,8 @@ $(document).ready(function() {
   $(".showResults").hide();
   var correct = 0;
   var wrong = 0;
-  var timeRemaining = 15;
+  var timeRemaining = 10;
   var userAnswers = [];
-
-  var isQuizRunning = false;
 
   function startTimer() {
       intervalId = setInterval(countdown, 1000); 
@@ -54,7 +52,6 @@ $(document).ready(function() {
       $(".showTimer").html("<h2>Time Remaining: " + timeRemaining + " Seconds</h2>");
       if (timeRemaining === 0) {
           stop();
-          getUserAnswers();
           alert("Times Up!");
           $(".showQuiz").hide();
           $(".showTimer").hide();
@@ -84,6 +81,7 @@ $(document).ready(function() {
   }
   
   function checkAnswers() {
+    getUserAnswers();
     for (var k = 0; k < userAnswers.length; k++) {
       if (userAnswers[k] === quiz[k].correctAnswer) {
         correct++;

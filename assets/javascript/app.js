@@ -32,6 +32,7 @@ var quiz = [{
 var intervalId; 
 
 $(document).ready(function() {
+  $(".showResults").hide();
   var correct = 0;
   var wrong = 0;
   var timeRemaining = 15;
@@ -55,7 +56,10 @@ $(document).ready(function() {
           stop();
           getUserAnswers();
           alert("Times Up!");
+          $(".showQuiz").hide();
+          $(".showTimer").hide();
           showResults();
+          $(".showResults").show();
       }
   }
 
@@ -73,7 +77,12 @@ $(document).ready(function() {
     }
   }
 
-
+  function getUserAnswers() {
+    if ($('input').checked === true) {
+      userAnswers.push($('input').attr("value"));
+    }
+  }
+  
   function checkAnswers() {
     for (var k = 0; k < userAnswers.length; k++) {
       if (userAnswers[k] === quiz[k].correctAnswer) {
@@ -90,12 +99,6 @@ $(document).ready(function() {
     $("#showCorrect").html("<h2>Correct Answers: " + correct + "</h2>");
     $("#showWrong").html("<h2>Wrong Answers: " + wrong + "</h2>")
     console.log(userAnswers);
-  }
-
-  function getUserAnswers() {
-    if ($('input').checked === true) {
-      userAnswers.push($('input').attr("value"));
-    }
   }
 
   $("#startQuiz").on("click", function() {
